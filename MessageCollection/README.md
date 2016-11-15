@@ -14,10 +14,14 @@ change the values in `parameters.json` and issue a command like the following:
 
 ```
 resourceGroupName=tbrresgroup
+templateFilePath=template.json
+parametersFilePath=parameters.json
+deploymentName=deployment-v161115a
+
 az resource group create --name $resourceGroupName --location 'West Europe'
 
 az resource group deployment create --name $deploymentName --resource-group $resourceGroupName \
-    --template-file $templateFilePath --parameters-file $parametersFilePath
+    --template-file $templateFilePath --parameters @$parametersFilePath
 ```
 
 It is interesting to have an automated way of creating the event hub because, in development, dropping it and crecreating it is the simplest / only way to empty it.

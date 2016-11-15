@@ -2,11 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "namespaces_moneventhub_name": {
-            "value": "tbrmoneventhub"
-        },
-        "AuthorizationRules_RootManageSharedAccessKey_name": {
-            "value": null
-        }
+        "eventHubNamespaceName":    { "value": "tbreventhubnamespace" },
+        "eventHubName":             { "value": "tbrmoneventhub" },
+        "eventHubManagePrimaryKey": { "value": "JEo0REVoyDH7dinK07SFWnKcfrypACrICs1de2hZSvU=" },
+        "eventHubListenPrimaryKey": { "value": "hdlgUXDJhRvfgfErbM82Sb/HWpk2NW2+7SlYMtBRoTA=" },
+        "eventHubSendPrimaryKey":   { "value": "clnIRs4nBh1Pb7VvOUkKDg74xWV8bC0gPElKq8jrUI0=" }
     }
 }
