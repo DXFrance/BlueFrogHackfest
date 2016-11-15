@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "namespaces_moneventhub_name": {
+            "defaultValue": "tbrmoneventhub",
+            "type": "String"
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name": {
+            "defaultValue": "tbrmoneventhub/RootManageSharedAccessKey",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.EventHub/namespaces",
+            "sku": {
+                "name": "Standard",
+                "tier": "Standard"
+            },
+            "kind": "EventHub",
+            "name": "[parameters('namespaces_moneventhub_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "tags": {},
+            "properties": {
+                "provisioningState": "Succeeded",
+                "status": "Active",
+                "createdAt": "2016-11-15T15:02:29.53Z",
+                "serviceBusEndpoint": "[concat('https://', parameters('namespaces_moneventhub_name'),'.servicebus.windows.net:443/')]",
+                "enabled": true,
+                "updatedAt": "2016-11-15T15:02:54.787Z"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+            "name": "[parameters('AuthorizationRules_RootManageSharedAccessKey_name')]",
+            "apiVersion": "2015-08-01",
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_moneventhub_name'))]"
+            ]
+        }
+    ]
+}
