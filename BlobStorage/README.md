@@ -68,6 +68,16 @@ An equivament ARM template would look like this
 
 - <https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/>
 
+Here are samples.
+
+The following Shared Access Signatures are available as samples on the `configcontainer` in the `tbrdatacollection` storage account (`https://tbrdatacollection.blob.core.windows.net/configcontainer/`). They will expire on 20th NOV 2016
+- read only: `?sv=2015-04-05&sr=c&si=read_policy&sig=bbtLX3YQ5ITJaj88FOBJfvAtwLQidAXfC27UtIVudBQ%3D&spr=https`
+- write only: `?sv=2015-04-05&sr=c&si=write-policy&sig=OOhMkm8hwvDDdRa2sY%2BIk9Ucy63Al%2FF4keXzT%2BPyTLM%3D&spr=https`
+
+Here is a sample file `https://tbrdatacollection.blob.core.windows.net/configcontainer/folder1/folder2/1.png` that has already been uploaded and that can be downloaded with the read policy:
+`https://tbrdatacollection.blob.core.windows.net/configcontainer/folder1/folder2/1.png?sv=2015-04-05&sr=c&si=read_policy&sig=bbtLX3YQ5ITJaj88FOBJfvAtwLQidAXfC27UtIVudBQ%3D&spr=https` 
+
+
 ## Concurrency access
 
 This could be done thru the Etag property.
