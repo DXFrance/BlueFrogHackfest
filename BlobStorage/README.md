@@ -77,6 +77,8 @@ The following Shared Access Signatures are available as samples on the `configco
 Here is a sample file `https://tbrdatacollection.blob.core.windows.net/configcontainer/folder1/folder2/1.png` that has already been uploaded and that can be downloaded with the read policy:
 `https://tbrdatacollection.blob.core.windows.net/configcontainer/folder1/folder2/1.png?sv=2015-04-05&sr=c&si=read_policy&sig=bbtLX3YQ5ITJaj88FOBJfvAtwLQidAXfC27UtIVudBQ%3D&spr=https` 
 
+One can upload content thru HTTPS PUT at once until 64 MB.
+More details at <https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs>.
 
 ## Concurrency access
 
