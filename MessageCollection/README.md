@@ -106,10 +106,14 @@ Extract from the `App.config`:
       <add key="eventHubManagePrimaryAndSecondaryKey" value="JEo0REVoyDH7dinK07SFWnKcfrypACrICs1de2hZSvU=" />
       <add key="eventHubListenPrimaryAndSecondaryKey" value="hdlgUXDJhRvfgfErbM82Sb/HWpk2NW2+7SlYMtBRoTA=" />
       <add key="eventHubSendPrimaryAndSecondaryKey"   value="clnIRs4nBh1Pb7VvOUkKDg74xWV8bC0gPElKq8jrUI0=" />
+      <add key="eventHubStporageDestinationConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tbrdatacollection;AccountKey=kjCcNxtjDMCaXLkDtl5MPyEYTfSaZm4YNGHnLGq8zx+KlB+NgCf/ivahtXGFm0QwjaulI3UuBUJjMUOKGFsxjw==" />
+      <add key="eventHubStporageDestinationContainer"        value="tbrdata" />
     </appSettings>
 ```
 
 The `eventHubNamespaceConnectionString` app setting can be retrieved from the output of the event hub namespace deployment, or from the portal as shown before. 
+
+The `eventHubStporageDestinationConnectionString` can be constructed from the primary (or secondary) key of a blob storage account.
 
 The other parameters can be changed but the don't depend on the event hub namespace deployment. 
 

@@ -18,6 +18,8 @@ namespace DropCreateDevEventHub
             string eventHubManagePrimaryAndSecondaryKey = ConfigurationManager.AppSettings["eventHubManagePrimaryAndSecondaryKey"];
             string eventHubListenPrimaryAndSecondaryKey = ConfigurationManager.AppSettings["eventHubListenPrimaryAndSecondaryKey"];
             string eventHubSendPrimaryAndSecondaryKey = ConfigurationManager.AppSettings["eventHubSendPrimaryAndSecondaryKey"];
+            string eventHubStporageDestinationConnectionString = ConfigurationManager.AppSettings["eventHubStporageDestinationConnectionString"];
+            string eventHubStporageDestinationContainer = ConfigurationManager.AppSettings["eventHubStporageDestinationContainer"];
 
             var manager = NamespaceManager
                 .CreateFromConnectionString(connectionString);
@@ -54,12 +56,23 @@ namespace DropCreateDevEventHub
                 eventHubListenPrimaryAndSecondaryKey,
                 new AccessRights[] { AccessRights.Listen }));
 
+            ehd.ArchiveDescription.Enabled = true;
+            ehd.ArchiveDescription.IntervalInSeconds = 300;
+            ehd.ArchiveDescription.SizeLimitInBytes = 300*1024*1024;
+            ehd.ArchiveDescription.Destination = 
+                ArchiveDestination.CreateBlockBlobDestination(
+                    eventHubStporageDestinationConnectionString,
+                    eventHubStporageDestinationContainer);
+            ehd.ArchiveDescription.Encoding = ArchiveEncoding.Avro;
+
             Console.WriteLine($"Event hub {eventHubName} is being created.");
             manager.CreateEventHub(ehd);
 
             Console.WriteLine($"Adding consumer groups CG1 and CG2 to event hub {eventHubName}.");
             manager.CreateConsumerGroup(eventHubName, "CG1");
             manager.CreateConsumerGroup(eventHubName, "CG2");
+
+
 
             Console.WriteLine("OK");
             Console.ReadLine();
