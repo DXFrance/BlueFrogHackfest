@@ -17,13 +17,19 @@ The App Settings are:
 `EH_1_SAS_HubName` = `tbrOurEventHub`
 `EH_1_SAS_Key` = `clnIRs4nBh1Pb7VvOUkKDg74xWV8bC0gPElKq8jrUI0=`
 
-sample call and its return: 
+sample calls (get the SAS, then use it): 
 
 ```
 curl --url 'https://tbrblobsasfunapp.azurewebsites.net/api/EventHubSasTokenCSharp?code=4BfLzxllhuKph2REBO6c3lhikjPs17ITdRGLJjyOVHixkREe823HqQ==' \
     --request 'POST' \
     --header 'Content-Type: application/json' \
-    --data '{"publisherName": "buddy356334", "tokenTimeToLive": "30"}'
+    --data '{"publisherName": "buddy356334", "tokenTimeToLive": "70"}'
 
-"SharedAccessSignature sr=https%3a%2f%2ftbreventhubnamespace.servicebus.windows.net%2ftbrOurEventHub%2fpublishers%2fbuddy356334%2fmessages&sig=7pVP%2fk6y%2fg8EnOgXIxd4d974e9PwAhtaRWhXcf50RXo%3d&se=1479314946&skn=SendPolicy"
+"SharedAccessSignature sr=https%3a%2f%2ftbreventhubnamespace.servicebus.windows.net%2ftbrOurEventHub%2fpublishers%2fbuddy1234%2fmessages&sig=jRn7rfYFOOI5DbRtm7Vl%2fxEXxMe5IGZ2oT2tZtxEb94%3d&se=1479317809&skn=SendPolicy"
+	
+curl --url 'https://tbreventhubnamespace.servicebus.windows.net/tbrOurEventHub/publishers/buddy1234/messages' \
+    --request 'POST' \
+    --header 'Authorization: SharedAccessSignature sr=https%3a%2f%2ftbreventhubnamespace.servicebus.windows.net%2ftbrOurEventHub%2fpublishers%2fbuddy1234%2fmessages&sig=jRn7rfYFOOI5DbRtm7Vl%2fxEXxMe5IGZ2oT2tZtxEb94%3d&se=1479317809&skn=SendPolicy' \
+    --header 'Content-Type: application/json' \
+    --data '{"field1": "value1", "field2": "value2"}'
 ```
