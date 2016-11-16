@@ -146,3 +146,12 @@ az resource group deployment create --name $deploymentName --resource-group $res
 ```
 
 the `$parametersFilePath` json file contains the values of the parameters required by the `$templateFilePath` JSON file. 
+
+## Azure Functions
+
+They are used in the project to provide the robot with Shared Access Signatures, based on an authentication/authroization mechanism that is oversimplified in this repo.
+
+more info on Azure Functions: 
+- <https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview>
+- <https://azure.microsoft.com/en-us/pricing/details/functions/>
+- <https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-csharp>

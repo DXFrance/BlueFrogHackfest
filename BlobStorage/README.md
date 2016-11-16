@@ -68,6 +68,9 @@ An equivament ARM template would look like this
 
 - <https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/>
 
+In the project, Shared Access Signatures are provided in an Azure Function. 
+See [Provide Blob SAS](ProvideSAS.md).
+
 Here are samples.
 
 The following Shared Access Signatures are available as samples on the `configcontainer` in the `tbrdatacollection` storage account (`https://tbrdatacollection.blob.core.windows.net/configcontainer/`). They will expire on 20th NOV 2016
