@@ -1,0 +1,339 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "namespaces_tbreventhubnamespace_name": {
+            "defaultValue": "tbreventhubnamespace",
+            "type": "String"
+        },
+        "storageAccounts_tbrblobsasfunappstor_name": {
+            "defaultValue": "tbrblobsasfunappstor",
+            "type": "String"
+        },
+        "storageAccounts_tbrdatacollection_name": {
+            "defaultValue": "tbrdatacollection",
+            "type": "String"
+        },
+        "serverfarms_WestEuropePlan_name": {
+            "defaultValue": "WestEuropePlan",
+            "type": "String"
+        },
+        "sites_tbrblobsasfunapp_name": {
+            "defaultValue": "tbrblobsasfunapp",
+            "type": "String"
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name": {
+            "defaultValue": "tbreventhubnamespace/RootManageSharedAccessKey",
+            "type": "String"
+        },
+        "eventhubs_tbroureventhub_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub",
+            "type": "String"
+        },
+        "authorizationRules_ManagePolicy_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub/ManagePolicy",
+            "type": "String"
+        },
+        "authorizationRules_SendPolicy_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub/SendPolicy",
+            "type": "String"
+        },
+        "authorizationRules_ReceivePolicy_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub/ReceivePolicy",
+            "type": "String"
+        },
+        "consumergroups_$Default_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub/$Default",
+            "type": "String"
+        },
+        "consumergroups_cg1_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub/cg1",
+            "type": "String"
+        },
+        "consumergroups_cg2_name": {
+            "defaultValue": "tbreventhubnamespace/tbroureventhub/cg2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace'.",
+            "type": "Microsoft.EventHub/namespaces",
+            "sku": {
+                "name": "Standard",
+                "tier": "Standard",
+                "capacity": 1
+            },
+            "kind": "EventHub",
+            "name": "[parameters('namespaces_tbreventhubnamespace_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "tags": {},
+            "properties": {
+                "provisioningState": "Succeeded",
+                "status": "Active",
+                "createdAt": "2016-11-15T20:27:15.607Z",
+                "serviceBusEndpoint": "[concat('https://', parameters('namespaces_tbreventhubnamespace_name'),'.servicebus.windows.net:443/')]",
+                "enabled": true,
+                "updatedAt": "2016-11-15T20:27:38.983Z"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourceGroups/tbrresgroup/providers/Microsoft.Storage/storageAccounts/tbrblobsasfunappstor'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_tbrblobsasfunappstor_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "westeurope",
+            "tags": {},
+            "properties": {},
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourceGroups/tbrresgroup/providers/Microsoft.Storage/storageAccounts/tbrdatacollection'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_GRS",
+                "tier": "Standard"
+            },
+            "kind": "BlobStorage",
+            "name": "[parameters('storageAccounts_tbrdatacollection_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "westeurope",
+            "tags": {},
+            "properties": {
+                "accessTier": "Hot",
+                "encryption": {
+                    "keySource": "Microsoft.Storage",
+                    "services": {
+                        "blob": {
+                            "enabled": true
+                        }
+                    }
+                }
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourceGroups/tbrresgroup/providers/Microsoft.Web/serverfarms/WestEuropePlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic",
+                "size": "Y1",
+                "family": "Y",
+                "capacity": 0
+            },
+            "kind": "functionapp",
+            "name": "[parameters('serverfarms_WestEuropePlan_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "name": "[parameters('serverfarms_WestEuropePlan_name')]",
+                "numberOfWorkers": 0
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourceGroups/tbrresgroup/providers/Microsoft.Web/sites/tbrblobsasfunapp'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[parameters('sites_tbrblobsasfunapp_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "name": "[parameters('sites_tbrblobsasfunapp_name')]",
+                "hostNames": [
+                    "tbrblobsasfunapp.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "tbrblobsasfunapp.azurewebsites.net",
+                    "tbrblobsasfunapp.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_tbrblobsasfunapp_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_tbrblobsasfunapp_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/AuthorizationRules/RootManageSharedAccessKey'.",
+            "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+            "name": "[parameters('AuthorizationRules_RootManageSharedAccessKey_name')]",
+            "apiVersion": "2015-08-01",
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs",
+            "name": "[parameters('eventhubs_tbroureventhub_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "messageRetentionInDays": 3,
+                "status": "Active",
+                "createdAt": "2016-11-16T10:07:06.037",
+                "updatedAt": "2016-11-16T10:07:06.3",
+                "partitionCount": 16,
+                "partitionIds": [
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub/authorizationRules/ManagePolicy'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[parameters('authorizationRules_ManagePolicy_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "rights": [
+                    "Send",
+                    "Listen",
+                    "Manage"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_tbroureventhub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub/authorizationRules/SendPolicy'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[parameters('authorizationRules_SendPolicy_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "rights": [
+                    "Send"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_tbroureventhub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub/authorizationRules/ReceivePolicy'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[parameters('authorizationRules_ReceivePolicy_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "rights": [
+                    "Listen"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_tbroureventhub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub/consumergroups/$Default'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[parameters('consumergroups_$Default_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "createdAt": "2016-11-16T10:07:07.204409",
+                "updatedAt": "2016-11-16T10:07:07.204409"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_tbroureventhub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub/consumergroups/cg1'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[parameters('consumergroups_cg1_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "createdAt": "2016-11-16T10:07:08.2825214",
+                "updatedAt": "2016-11-16T10:07:08.2825214"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_tbroureventhub_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/b4ed3d75-dd0d-4660-aacd-7cb2d1bed125/resourcegroups/tbrresgroup/providers/Microsoft.EventHub/namespaces/tbreventhubnamespace/eventhubs/tbroureventhub/consumergroups/cg2'.",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[parameters('consumergroups_cg2_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West Europe",
+            "properties": {
+                "createdAt": "2016-11-16T10:07:09.1106894",
+                "updatedAt": "2016-11-16T10:07:09.1106894"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_tbreventhubnamespace_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_tbroureventhub_name'))]"
+            ]
+        }
+    ]
+}
