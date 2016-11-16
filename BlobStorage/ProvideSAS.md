@@ -7,7 +7,7 @@ NB: this code is based on the sample provided by Azure Functions:
 
 ![](img/new-function-blob-sas.png)
 
-You can find it in the <ProvideSAS-code.cs> file.
+You can find it in the `ProvideSAS-code.cs` file.
 
 
 App Settings contains the following value for the new key `datacollectionblobstoragecn`:
