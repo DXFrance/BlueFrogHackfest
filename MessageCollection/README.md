@@ -9,6 +9,8 @@ Azure Stream Analytics can then send data to [Power BI](http://powerbi.com).
 
 ## Event Hubs
 
+Folder `EventHubSamplePythonCode` contains Python code from an older project (APR 2015); this code can help understanding how request can be done at the REST level.
+
 It is interesting to have an automated way of creating the event hub because, in development, dropping it and crecreating it is the simplest / only way to empty it.
 
 This is done in 2 phases: 
