@@ -1,0 +1,20 @@
+﻿REFERENCE ASSEMBLY [Newtonsoft.Json];
+REFERENCE ASSEMBLY [Sample2USQLCSharpLib];
+
+@logs = 
+    EXTRACT wholeLine string, annee int, mois int, jour int, filename string
+    FROM @"wasb://tbrdata2@tbrdatacollection.blob.core.windows.net/archives/{annee}/{mois}/{jour}/{filename}.json"
+    USING Extractors.Text(encoding:System.Text.Encoding.UTF8, quoting:false, delimiter: '\n');
+
+@parsed =
+    SELECT annee,
+           mois,
+           jour,
+           filename,
+           wholeLine,
+           Sample2USQLCSharpLib.JsonHelper.ExtractPropertiesFromJson(wholeLine) AS extracted
+    FROM @logs;
+
+OUTPUT @parsed
+    TO @"wasb://adlaoutput@tbrdatacollection.blob.core.windows.net/sample2/{*}.tsv"
+    USING Outputters.Tsv();
