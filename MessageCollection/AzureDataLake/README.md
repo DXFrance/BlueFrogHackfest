@@ -75,3 +75,6 @@ into records like
 
 in particular, the extracted values are at the end: `"V161117a|D85DE2B3F32D|46|"`.
 
+## XML and JSON
+
+There are also examples of how to extract JSON and XML in U-SQL: cf <https://github.com/Azure/usql/tree/master/Examples/DataFormats/Microsoft.Analytics.Samples.Formats>
