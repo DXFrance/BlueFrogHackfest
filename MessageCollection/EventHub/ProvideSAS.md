@@ -12,10 +12,10 @@ Basically, this Azure function works like the one for Blob storage.
 
 The App Settings are: 
 
-`EH_1_SAS_PolicyName` = `SendPolicy` 
-`EH_1_SAS_Namespace` = `tbreventhubnamespace` 
-`EH_1_SAS_HubName` = `tbrOurEventHub`
-`EH_1_SAS_Key` = `clnIRs4nBh1Pb7VvOUkKDg74xWV8bC0gPElKq8jrUI0=`
+- `EH_1_SAS_PolicyName` = `SendPolicy` 
+- `EH_1_SAS_Namespace` = `tbreventhubnamespace` 
+- `EH_1_SAS_HubName` = `tbrOurEventHub`
+- `EH_1_SAS_Key` = `clnIRs4nBh1Pb7VvOUkKDg74xWV8bC0gPElKq8jrUI0=`
 
 sample calls (get the SAS, then use it): 
 
