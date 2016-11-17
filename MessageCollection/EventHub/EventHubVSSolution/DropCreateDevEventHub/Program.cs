@@ -56,15 +56,6 @@ namespace DropCreateDevEventHub
                 eventHubListenPrimaryAndSecondaryKey,
                 new AccessRights[] { AccessRights.Listen }));
 
-            ehd.ArchiveDescription.Enabled = true;
-            ehd.ArchiveDescription.IntervalInSeconds = 300;
-            ehd.ArchiveDescription.SizeLimitInBytes = 300*1024*1024;
-            ehd.ArchiveDescription.Destination = 
-                ArchiveDestination.CreateBlockBlobDestination(
-                    eventHubStporageDestinationConnectionString,
-                    eventHubStporageDestinationContainer);
-            ehd.ArchiveDescription.Encoding = ArchiveEncoding.Avro;
-
             Console.WriteLine($"Event hub {eventHubName} is being created.");
             manager.CreateEventHub(ehd);
 
