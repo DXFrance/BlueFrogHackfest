@@ -20,5 +20,5 @@ The following has been put in place:
     - it is then processed by Azure Stream Analytics: ![](img/6.png) 
     - Azure Stream Analytics sends ![](img/7.png)
         - a copy of all the data to blob storage ![](img/8.png)
-            - the data can be searched with Azure Stream Analytics: ![](img/10.png) ![](img/11.png) ![](img/12.png)  
+            - the data can be searched with Azure Data Lake Analytics: ![](img/10.png) ![](img/11.png) ![](img/12.png)  
         - a summary of the data to Power BI ![](img/9.png)
